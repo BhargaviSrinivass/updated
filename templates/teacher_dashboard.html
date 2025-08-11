@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-6 bg-gray-50 min-h-screen">
+    <h1 class="text-4xl font-extrabold text-center text-blue-800 mb-10 mt-4">📊 Teacher Dashboard: All Class Leaderboards</h1>
+
+    {% if leaderboard_data %}
+        {% for class_name in leaderboard_data | sort %} {# Iterate through classes, sorted by name #}
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8 border border-blue-200">
+            <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">🏆 Class {{ class_name }} Leaderboard</h2>
+            
+            <div class="overflow-x-auto bg-blue-50 rounded-lg shadow-inner p-2">
+                <table class="min-w-full divide-y divide-blue-200">
+                    <thead class="bg-blue-100">
+                        <tr>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider rounded-tl-lg">Rank</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">Name</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">School</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">Register No.</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">Score</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider rounded-tr-lg">Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-blue-200">
+                        {% for student in leaderboard_data[class_name] %}
+                        <tr class="hover:bg-blue-50 transition duration-150 ease-in-out">
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">{{ loop.index }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{{ student.Name }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">{{ student.School }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">{{ student['Register Number'] }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">{{ student.Score }} / {{ student['Total Questions'] if student['Total Questions'] is defined else student['Questions Attempted'] }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">{{ student['Score Percentage'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <div class="bg-blue-100 border border-blue-400 text-blue-700 p-6 rounded-lg text-center shadow-md">
+        <p class="text-xl">No assessment results available to display in the leaderboard yet.</p>
+        <p class="text-md mt-2">Students need to submit tests for data to appear here.</p>
+    </div>
+    {% endif %}
+
+    <!-- NEW: Delete All Data Button -->
+    <div class="text-center mt-12">
+        <form action="{{ url_for('assessment.delete_all_results') }}" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete all assessment data? This action cannot be undone.');">
+            <button type="submit" class="bg-red-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Delete All Data
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

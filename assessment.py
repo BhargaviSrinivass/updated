@@ -1,6 +1,7 @@
 import os
 import json
 from datetime import datetime
+from collections import defaultdict
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, jsonify
 
@@ -11,7 +12,7 @@ assessment_bp = Blueprint('assessment', __name__, url_prefix='/assessment')
 # These headers will now serve as a reference for the data structure you'd store locally.
 SHEET_HEADERS = [
     "Timestamp", "Name", "Class", "School", "Register Number",
-    "Questions Attempted", "Score", "Score Percentage"
+    "Questions Attempted", "Score", "Score Percentage", "Total Questions"
 ]
 
 # --- Function to simulate data storage (e.g., to a local JSON file) ---
@@ -31,7 +32,7 @@ def save_assessment_data_locally(data_row):
         with open(data_file_path, 'r+', encoding='utf-8') as f:
             file_data = json.load(f)
             file_data.append(data_row)
-            f.seek(0)  # Rewind to the beginning of the file
+            f.seek(0) # Rewind to the beginning of the file
             json.dump(file_data, f, indent=4)
         print(f"Successfully saved data to {data_file_path}")
         return True
@@ -39,6 +40,66 @@ def save_assessment_data_locally(data_row):
         print(f"Error saving data locally: {e}")
         return False
 
+# --- NEW: Function to get leaderboard data ---
+def get_leaderboard_data(target_class=None):
+    """
+    Reads assessment results, calculates the latest score for each student,
+    and returns ranked data, optionally filtered by class.
+    """
+    data_file_path = os.path.join(os.path.dirname(__file__), 'assessment_results.json')
+    all_results = []
+    if os.path.exists(data_file_path):
+        try:
+            with open(data_file_path, 'r', encoding='utf-8') as f:
+                all_results = json.load(f)
+        except json.JSONDecodeError:
+            print("Error decoding JSON from assessment_results.json. File might be empty or corrupt.")
+            return {} # Return empty if file is invalid JSON
+
+    # Use defaultdict to store the latest score for each unique student (name + reg_number + class)
+    # This assumes the latest entry for a student represents their current score.
+    latest_scores = defaultdict(lambda: {'score': -1, 'timestamp': datetime.min, 'data': None})
+
+    for entry in all_results:
+        try:
+            name = entry.get('Name')
+            student_class = str(entry.get('Class')) # Ensure class is string for consistent key
+            reg_number = entry.get('Register Number')
+            score = int(entry.get('Score', 0))
+            timestamp_str = entry.get('Timestamp')
+            
+            # Create a unique identifier for the student within their class
+            student_id = f"{name}-{reg_number}-{student_class}"
+
+            # Convert timestamp to datetime object for comparison
+            entry_timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+
+            # Update if this is a newer submission for this student_id
+            if entry_timestamp > latest_scores[student_id]['timestamp']:
+                latest_scores[student_id]['score'] = score
+                latest_scores[student_id]['timestamp'] = entry_timestamp
+                latest_scores[student_id]['data'] = entry
+
+        except (ValueError, TypeError, KeyError) as e:
+            print(f"Skipping malformed entry in assessment_results.json: {entry} Error: {e}")
+            continue
+            
+    # Group results by class
+    leaderboards_by_class = defaultdict(list)
+    for student_id, data_entry in latest_scores.items():
+        entry_data = data_entry['data']
+        class_num = str(entry_data.get('Class')) # Ensure consistent string
+        leaderboards_by_class[class_num].append(entry_data)
+    
+    # Sort each class leaderboard
+    for class_num in leaderboards_by_class:
+        leaderboards_by_class[class_num].sort(key=lambda x: int(x.get('Score', 0)), reverse=True)
+
+    # If a target_class is specified, return only that leaderboard
+    if target_class:
+        return {target_class: leaderboards_by_class.get(str(target_class), [])}
+    
+    return dict(leaderboards_by_class) # Convert back to dict for general use
 
 # --- This route is correct and does not need changes ---
 @assessment_bp.route('/take', methods=['GET', 'POST'])
@@ -141,7 +202,8 @@ def submit_test():
             "Register Number": student_details.get('register_number', ''),
             "Questions Attempted": questions_attempted,
             "Score": score,
-            "Score Percentage": score_percentage
+            "Score Percentage": score_percentage,
+            "Total Questions": total_questions # ADDED THIS LINE TO SAVE TOTAL QUESTIONS
         }
         
         print("Data prepared for local saving:")
@@ -158,7 +220,8 @@ def submit_test():
                 'score': score,
                 'total_questions': total_questions,
                 'score_percentage': score_percentage,
-                'name': student_details.get('name', '')
+                'name': student_details.get('name', ''),
+                'class': selected_class # Also store the class here for leaderboard filtering
             }
             
             return redirect(url_for('assessment.thank_you'))
@@ -172,15 +235,63 @@ def submit_test():
         flash('Could not submit results due to a server error. Please try again.', 'danger')
         return redirect(url_for('assessment.start_test'))
 
-# --- UPDATED: Pass results to thank.html ---
+# --- UPDATED: Pass results and leaderboard to thank.html ---
 @assessment_bp.route('/thank_you')
 def thank_you():
     results = session.pop('test_results', None) # Retrieve and clear results from session
+    
+    # Initialize leaderboard_data as empty
+    leaderboard_data = {} 
+    
     if results:
-        return render_template('thank.html', results=results)
+        # Get leaderboard for the student's class
+        student_class = results.get('class')
+        if student_class:
+            leaderboard_data = get_leaderboard_data(target_class=student_class)
+        return render_template('thank.html', results=results, leaderboard=leaderboard_data)
     else:
         # If results aren't in session (e.g., direct access), redirect to take assessment
         flash('No results to display. Please take the assessment first.', 'info')
         return redirect(url_for('assessment.take_assessment'))
 
-# --- Optional: Removed admin/reset-headers as it was Google Sheets specific ---
+# --- NEW: Route to view all leaderboards (optional, for admin/separate page) ---
+@assessment_bp.route('/leaderboards')
+def view_leaderboards():
+    all_leaderboards = get_leaderboard_data() # Get all classes' leaderboards
+    return render_template('leaderboards_overview.html', all_leaderboards=all_leaderboards)
+
+# --- NEW: Route for specific class leaderboard (optional, if using dropdown) ---
+@assessment_bp.route('/leaderboard/<int:class_id>')
+def class_leaderboard(class_id):
+    leaderboard = get_leaderboard_data(target_class=str(class_id))
+    if not leaderboard:
+        flash(f'No data available for Class {class_id}.', 'info')
+        return redirect(url_for('assessment.view_leaderboards')) # Or a general thank you
+    return render_template('leaderboards_overview.html', all_leaderboards=leaderboard, current_class=class_id) # Use same template, pass specific class
+
+# --- NEW: Route for Teacher Dashboard to view all class leaderboards ---
+@assessment_bp.route('/teacher_dashboard')
+def teacher_dashboard():
+    all_leaderboards = get_leaderboard_data() # Get leaderboards for all classes
+    return render_template('teacher_dashboard.html', leaderboard_data=all_leaderboards)
+
+# --- NEW: Route to delete all assessment results (for the delete button) ---
+@assessment_bp.route('/delete_all_results', methods=['POST'])
+def delete_all_results():
+    """Deletes the local assessment_results.json file."""
+    # NOTE: In a real-world app, you would add a check here to ensure the user is an admin or teacher.
+    # For now, anyone with access to the dashboard can trigger this.
+    data_file_path = os.path.join(os.path.dirname(__file__), 'assessment_results.json')
+    
+    if os.path.exists(data_file_path):
+        try:
+            os.remove(data_file_path)
+            flash('All assessment data has been successfully deleted.', 'success')
+            print("Successfully deleted assessment_results.json")
+        except OSError as e:
+            flash(f'Error deleting data file: {e}', 'danger')
+            print(f"Error deleting data file: {e}")
+    else:
+        flash('No data file found to delete.', 'info')
+
+    return redirect(url_for('assessment.teacher_dashboard'))
