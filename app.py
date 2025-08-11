@@ -1,5 +1,6 @@
 # app.py
 from flask import Flask, render_template
+from flask_login import login_required 
 from extensions import db, login_manager
 from models import User, Problem, Submission, Video, Quiz, Question, Option, QuizAttempt, Post
 from leaderboard import leaderboard as leaderboard_blueprint
@@ -29,6 +30,9 @@ def create_app():
     from quiz import quiz as quiz_blueprint
     from discuss import discuss as discuss_blueprint
     from profilee import profile as profile_blueprint
+    from neet import neet as neet_blueprint
+    # --- This import is now correctly in place ---
+    from assessment import assessment_bp
 
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(problems_blueprint)
@@ -37,7 +41,11 @@ def create_app():
     app.register_blueprint(discuss_blueprint)
     app.register_blueprint(profile_blueprint)
     app.register_blueprint(leaderboard_blueprint)
+    app.register_blueprint(neet_blueprint)
+    # --- This registration is also correctly in place ---
+    app.register_blueprint(assessment_bp)
 
+    # ... (the rest of your app context code remains the same)
     with app.app_context():
         db.create_all()
 
@@ -58,16 +66,6 @@ def create_app():
                     print(f"{len(problems)} problems loaded from JSON.")
             else:
                 print("problems.json file not found!")
-
-        # Existing logic for videos, quizzes, posts remains unchanged
-        if not Video.query.first():
-            # [Your existing dummy videos code here...]
-            pass
-
-        if not Quiz.query.first():
-            # [Your existing dummy quizzes code here...]
-            pass
-
         if not Post.query.first():
             first_user = User.query.first()
             if first_user:
@@ -82,6 +80,8 @@ def create_app():
     @app.route('/')
     def home():
         return render_template('index.html')
+    
+    # --- DELETE THE OLD /neet-portal ROUTE FROM HERE ---
 
     return app
 

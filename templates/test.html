@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Test in Progress{% endblock %}
+
+{% block content %}
+<style>
+    /* All your existing CSS is correct and does not need to be changed. */
+    .test-container { display: flex; gap: 2rem; animation: fadeIn 0.5s ease-in-out; }
+    .question-area { flex-grow: 1; }
+    .navigation-panel { width: 300px; flex-shrink: 0; background-color: #f9fafb; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); align-self: flex-start; }
+    .question-block { display: none; }
+    .question-block.active { display: block; }
+    .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; }
+    .palette-item { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid #d1d5db; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s ease; }
+    .palette-item:hover { background-color: #f3f4f6; }
+    .palette-item.active { background-color: #3b82f6; color: white; border-color: #2563eb; }
+    .palette-item.answered { background-color: #16a34a; color: white; border-color: #15803d; }
+    #timer { font-size: 1.75rem; font-weight: 700; color: #1d4ed8; }
+    #timer.low-time { color: #dc2626; animation: pulse 1s infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @media (max-width: 992px) { .test-container { flex-direction: column-reverse; } .navigation-panel { width: 100%; margin-bottom: 2rem; } }
+    
+    .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    /* Enhanced styling for answer input fields */
+    .answer-input {
+        border: 2px solid #000000 !important;
+        background-color: #ffffff;
+        padding: 12px 16px;
+        font-size: 16px;
+        line-height: 1.5;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .answer-input:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+        outline: none;
+    }
+    
+    .answer-input:hover {
+        border-color: #374151;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .answer-input::placeholder {
+        color: #9ca3af;
+        font-style: italic;
+    }
+</style>
+
+<form id="testForm" action="{{ url_for('assessment.submit_test') }}" method="POST">
+    <div class="test-container">
+        <!-- Main Question Area -->
+        <div class="question-area bg-white p-8 rounded-lg shadow-md">
+            {% for question in test_questions[selected_class] %} {# Updated to use selected_class from backend #}
+            {% set outer_loop_index = loop.index0 %}
+            <div id="q-block-{{ outer_loop_index }}" class="question-block {% if loop.first %}active{% endif %}">
+                <h3 class="text-xl font-semibold mb-6">Question {{ loop.index }} of {{ test_questions[selected_class]|length }}</h3> {# Updated to use selected_class for total count #}
+                <p class="text-lg text-gray-800 mb-6">{{ question.text }}</p>
+                
+                <!-- ***** ENHANCED: Text input with better visibility ***** -->
+                <div class="mt-4">
+                    <label for="answer_{{ question.id }}" class="block text-sm font-medium text-gray-700 mb-2">Your Answer:</label>
+                    <input type="text"
+                           name="question_{{ question.id }}"
+                           id="answer_{{ question.id }}"
+                           class="answer-input w-full"
+                           placeholder="Type your answer here..."
+                           autocomplete="off"
+                           data-qindex="{{ outer_loop_index }}">
+                </div>
+            </div>
+            {% endfor %}
+            
+            <div class="mt-8 pt-6 border-t flex justify-between">
+                <button type="button" id="prevBtn" class="nav-btn bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition">Previous</button>
+                <button type="button" id="nextBtn" class="nav-btn bg-blue-600 text-white font-bold py-2 px-8 rounded-lg hover:bg-blue-700 transition">Next</button>
+            </div>
+        </div>
+
+        <!-- Right Side Navigation Panel -->
+        <div class="navigation-panel">
+            <h3 class="text-lg font-bold text-center mb-2">Quiz Navigation</h3>
+            <div class="text-center mb-4 border-b pb-4"><div id="timer">30:00</div></div>
+            <div id="questionPalette" class="palette-grid mb-6">
+                {% for question in test_questions[selected_class] %} {# Updated to use selected_class from backend #}
+                <div class="palette-item {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}">{{ loop.index }}</div>
+                {% endfor %}
+            </div>
+            <div class="flex flex-col space-y-3 mb-6">
+                <button type="button" id="resetBtn" class="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition">Reset Answers</button>
+                <button type="submit" class="bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition">Final Submit</button>
+            </div>
+            <div class="mt-6 border-t pt-4 space-y-2">
+                <h4 class="font-semibold text-sm text-gray-700">Legend:</h4>
+                <div class="flex items-center space-x-2"><div class="w-5 h-5 border rounded" style="background-color: white;"></div><span class="text-sm text-gray-600">Not Answered</span></div>
+                <div class="flex items-center space-x-2"><div class="w-5 h-5 rounded" style="background-color: #16a34a;"></div><span class="text-sm text-gray-600">Answered</span></div>
+                <div class="flex items-center space-x-2"><div class="w-5 h-5 rounded" style="background-color: #3b82f6;"></div><span class="text-sm text-gray-600">Current Question</span></div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const questions = document.querySelectorAll('.question-block');
+        const paletteItems = document.querySelectorAll('.palette-item');
+        const testForm = document.getElementById('testForm');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let timeLeft = 30 * 60;
+        let currentQuestionIndex = 0;
+
+        function showQuestion(index) {
+            if (index < 0 || index >= questions.length) { return; }
+            currentQuestionIndex = index;
+            questions.forEach(q => q.classList.remove('active'));
+            document.getElementById(`q-block-${index}`).classList.add('active');
+            paletteItems.forEach(p => p.classList.remove('active'));
+            paletteItems[index].classList.add('active');
+            prevBtn.disabled = (currentQuestionIndex === 0);
+            nextBtn.disabled = (currentQuestionIndex === questions.length - 1);
+            
+            // Focus on the answer input for better user experience
+            const currentInput = document.querySelector(`#q-block-${index} .answer-input`);
+            if (currentInput) {
+                setTimeout(() => currentInput.focus(), 100);
+            }
+        }
+
+        function updatePaletteStatus() {
+            const answerInputs = document.querySelectorAll('.answer-input');
+            answerInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const qIndex = this.dataset.qindex;
+                    if (this.value.trim() !== '') {
+                        paletteItems[qIndex].classList.add('answered');
+                    } else {
+                        paletteItems[qIndex].classList.remove('answered');
+                    }
+                });
+            });
+        }
+        
+        paletteItems.forEach(item => { item.addEventListener('click', function() { showQuestion(parseInt(this.dataset.index, 10)); }); });
+        prevBtn.addEventListener('click', function() { showQuestion(currentQuestionIndex - 1); });
+        nextBtn.addEventListener('click', function() { showQuestion(currentQuestionIndex + 1); });
+        const timerElement = document.getElementById('timer');
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            if (timeLeft < 300) { timerElement.classList.add('low-time'); }
+            if (timeLeft <= 0) { clearInterval(timerInterval); alert("Time's up!"); testForm.submit(); }
+        }, 1000);
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            // Replaced alert with custom modal logic
+            showCustomConfirm('Are you sure you want to reset all your answers?', function() {
+                testForm.reset();
+                paletteItems.forEach(p => p.classList.remove('answered'));
+                showQuestion(0);
+            });
+        });
+        testForm.addEventListener('submit', function(event) {
+            // Replaced alert with custom modal logic
+            event.preventDefault(); // Prevent default submission until confirmed
+            showCustomConfirm('Are you sure you want to submit your test?', function() {
+                testForm.submit(); // If confirmed, submit the form
+            });
+        });
+
+        // Custom Modal Logic (replaces alert and confirm)
+        function showCustomConfirm(message, callback) {
+            let modalHtml = `
+                <div id="customConfirmModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" style="z-index: 1000;">
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                        <div class="mt-3 text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">${message}</h3>
+                            <div class="mt-2 px-7 py-3">
+                                <p class="text-sm text-gray-500">Please confirm your action.</p>
+                            </div>
+                            <div class="items-center px-4 py-3">
+                                <button id="confirmYes" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-24 shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2">
+                                    Yes
+                                </button>
+                                <button id="confirmNo" class="px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md w-24 shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                                    No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            document.getElementById('confirmYes').onclick = function() {
+                document.getElementById('customConfirmModal').remove();
+                if (callback) callback();
+            };
+
+            document.getElementById('confirmNo').onclick = function() {
+                document.getElementById('customConfirmModal').remove();
+            };
+        }
+
+        updatePaletteStatus();
+        showQuestion(0);
+    });
+</script>
+{% endblock %}

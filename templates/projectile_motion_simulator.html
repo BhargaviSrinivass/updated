@@ -1,0 +1,844 @@
+{% extends "base.html" %}
+
+{% block title %}NEET Prep Portal - Projectile Motion{% endblock %}
+
+{% block content %}
+<style>
+    /* You can move these styles to a central CSS file if preferred */
+    .main-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+    }
+    .card {
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s ease;
+    }
+    .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+    .formula-box {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        border-radius: 8px;
+        padding: 16px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    }
+    .btn-primary {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    .btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    .btn-secondary {
+        background: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    .btn-secondary:hover {
+        background: #dc2626;
+        transform: translateY(-1px);
+    }
+    .trajectory-canvas {
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+    }
+    .parameter-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        background: #e2e8f0;
+        height: 6px;
+        border-radius: 3px;
+        outline: none;
+        transition: all 0.2s ease;
+    }
+    .parameter-slider:hover {
+        background: #cbd5e1;
+    }
+    .parameter-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: #3b82f6;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .parameter-slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: #3b82f6;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+    .section-title {
+        color: #1e293b;
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .concept-item {
+        background: #f1f5f9;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 8px;
+        border-left: 4px solid #3b82f6;
+    }
+    .highlight {
+        color: #3b82f6;
+        font-weight: 600;
+    }
+    .calculation-result {
+        background: #dbeafe;
+        border: 1px solid #93c5fd;
+        color: #1e40af;
+        padding: 16px;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .projectile-dot {
+        width: 12px;
+        height: 12px;
+        background: #ef4444;
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    }
+    .input-group {
+        margin-bottom: 20px;
+    }
+    .input-label {
+        display: block;
+        color: #475569;
+        font-weight: 500;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+    .slider-value {
+        text-align: center;
+        color: #3b82f6;
+        font-weight: 600;
+        margin-top: 4px;
+        font-size: 0.9rem;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<div class="min-h-screen py-8 px-4">
+    <div class="main-container p-8 mb-6 max-w-6xl mx-auto">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-slate-800 mb-3">
+                <i class="fas fa-rocket mr-3 text-blue-500"></i>
+                Projectile Motion Mastery
+            </h1>
+            <p class="text-slate-600 text-lg max-w-4xl mx-auto leading-relaxed">
+                Master projectile motion with Prof. Dr. K. Vijaya Kumar's Connectomic Theory of Knowledge. 
+                Build understanding from basics to advanced concepts with interactive tools.
+            </p>
+            <div class="mt-6">
+                <a href="{{ url_for('static', filename='notes/Projectile Motion.pdf') }}" 
+                   download="Projectile_Motion_Notes.pdf"
+                   class="inline-block bg-teal-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-teal-600 transition-transform transform hover:scale-105">
+                    <i class="fas fa-download mr-2"></i>
+                    Download Complete Notes (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 space-y-6">
+        <div class="card p-6">
+            <h3 class="section-title">
+                <i class="fas fa-book-open mr-3 text-blue-500"></i>Theory Foundation
+            </h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-xl font-semibold text-slate-700 mb-4">
+                        <i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Key Concepts
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="concept-item">
+                            Projectile motion is influenced by <span class="highlight">gravity alone</span>
+                        </div>
+                        <div class="concept-item">
+                            Horizontal velocity component remains <span class="highlight">constant</span>
+                        </div>
+                        <div class="concept-item">
+                            Vertical velocity decreases to <span class="highlight">zero</span> at highest point
+                        </div>
+                        <div class="concept-item">
+                            Motion follows a <span class="highlight">parabolic path</span>
+                        </div>
+                        <div class="concept-item">
+                            Time up = Time down from same height
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-semibold text-slate-700 mb-4">
+                        <i class="fas fa-cogs mr-2 text-green-500"></i>Real-World Applications
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="concept-item">Artillery targeting systems</div>
+                        <div class="concept-item">Rocket trajectory planning</div>
+                        <div class="concept-item">Sports ball dynamics</div>
+                        <div class="concept-item">Satellite orbital mechanics</div>
+                        <div class="concept-item">Water fountain design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-6">
+            <h3 class="section-title">
+                <i class="fas fa-calculator mr-3 text-blue-500"></i>Essential Formulas
+            </h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="formula-box">
+                    <div class="text-sm mb-2 opacity-90">Range</div>
+                    <div class="text-lg font-bold">R = v²sin(2θ)/g</div>
+                </div>
+                <div class="formula-box">
+                    <div class="text-sm mb-2 opacity-90">Maximum Height</div>
+                    <div class="text-lg font-bold">H = v²sin²(θ)/2g</div>
+                </div>
+                <div class="formula-box">
+                    <div class="text-sm mb-2 opacity-90">Time of Flight</div>
+                    <div class="text-lg font-bold">T = 2vsin(θ)/g</div>
+                </div>
+                <div class="formula-box">
+                    <div class="text-sm mb-2 opacity-90">Horizontal Velocity</div>
+                    <div class="text-lg font-bold">vₓ = v·cos(θ)</div>
+                </div>
+                <div class="formula-box">
+                    <div class="text-sm mb-2 opacity-90">Vertical Velocity</div>
+                    <div class="text-lg font-bold">vᵧ = v·sin(θ) - gt</div>
+                </div>
+                <div class="formula-box">
+                    <div class="text-sm mb-2 opacity-90">Time to Max Height</div>
+                    <div class="text-lg font-bold">t = vsin(θ)/g</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-6">
+            <h3 class="section-title">
+                <i class="fas fa-play-circle mr-3 text-blue-500"></i>Advanced NEET Physics Simulator
+            </h3>
+            
+            <div class="grid lg:grid-cols-4 gap-6">
+                <div class="bg-slate-50 rounded-lg p-6 border">
+                    <h4 class="text-lg font-semibold text-slate-700 mb-4">Launch Parameters</h4>
+                    
+                    <div class="space-y-5">
+                        <div class="input-group">
+                            <label class="input-label">Initial Velocity (m/s)</label>
+                            <input type="range" id="velocity" min="10" max="200" value="100" class="w-full parameter-slider">
+                            <div class="slider-value" id="velocityValue">100 m/s</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Launch Angle (degrees)</label>
+                            <input type="range" id="angle" min="0" max="90" value="45" class="w-full parameter-slider">
+                            <div class="slider-value" id="angleValue">45°</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Gravity (m/s²)</label>
+                            <input type="range" id="gravity" min="1" max="20" value="9.8" step="0.1" class="w-full parameter-slider">
+                            <div class="slider-value" id="gravityValue">9.8 m/s²</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Launch Height (m)</label>
+                            <input type="range" id="height" min="0" max="100" value="0" class="w-full parameter-slider">
+                            <div class="slider-value" id="heightValue">0 m</div>
+                        </div>
+                        
+                        <button onclick="launchProjectile()" class="w-full btn-primary">
+                            🚀 Launch Projectile
+                        </button>
+                        
+                        <button onclick="animateTrajectory()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold transition-colors">
+                            🎬 Animate Motion
+                        </button>
+                        
+                        <button onclick="clearTrajectory()" class="w-full btn-secondary">
+                            🗑️ Clear Trajectory
+                        </button>
+
+                        <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="text-sm font-medium text-blue-800 mb-1">NEET Tip:</div>
+                            <div class="text-xs text-blue-700">Click anywhere on the trajectory to analyze that point!</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-3">
+                    <div class="trajectory-canvas p-4 h-80 relative cursor-crosshair" id="canvasContainer">
+                        <canvas id="trajectoryCanvas" class="w-full h-full"></canvas>
+                        <div id="projectile" class="projectile-dot absolute hidden"></div>
+                        
+                        <div id="pointAnalysis" class="hidden absolute bg-white border-2 border-blue-300 rounded-lg p-4 shadow-lg z-10 max-w-xs">
+                            <div class="font-semibold text-slate-800 mb-2">Point Analysis</div>
+                            <div id="analysisContent" class="space-y-1 text-sm"></div>
+                            <button onclick="hideAnalysis()" class="mt-2 text-xs bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded">Close</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-2 flex justify-center space-x-4 text-sm text-slate-600">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded mr-1"></div>
+                            Trajectory Path
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-500 rounded mr-1"></div>
+                            Maximum Height
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-500 rounded mr-1"></div>
+                            Landing Point
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-4 mt-6">
+                <div class="calculation-result">
+                    <div class="text-sm font-medium mb-1">Maximum Range</div>
+                    <div class="text-2xl font-bold" id="maxRange">0 m</div>
+                </div>
+                <div class="calculation-result">
+                    <div class="text-sm font-medium mb-1">Maximum Height</div>
+                    <div class="text-2xl font-bold" id="maxHeight">0 m</div>
+                </div>
+                <div class="calculation-result">
+                    <div class="text-sm font-medium mb-1">Time of Flight</div>
+                    <div class="text-2xl font-bold" id="timeOfFlight">0 s</div>
+                </div>
+                <div class="calculation-result">
+                    <div class="text-sm font-medium mb-1">Initial KE</div>
+                    <div class="text-2xl font-bold" id="initialKE">0 J</div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div class="bg-slate-50 rounded-lg p-4 border">
+                    <h5 class="font-semibold text-slate-700 mb-3">Velocity Components Analysis</h5>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Horizontal Velocity (vₓ):</span>
+                            <span class="font-medium" id="vx">0 m/s</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Initial Vertical Velocity (vᵧ₀):</span>
+                            <span class="font-medium" id="vy0">0 m/s</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Velocity at Max Height:</span>
+                            <span class="font-medium" id="vMaxHeight">0 m/s</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Impact Velocity:</span>
+                            <span class="font-medium" id="impactVel">0 m/s</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <h5 class="font-semibold text-amber-800 mb-3">
+                        <i class="fas fa-star mr-1"></i>NEET Key Insights
+                    </h5>
+                    <div class="space-y-2 text-sm text-amber-800">
+                        <div id="neetInsight1">• Horizontal velocity remains constant throughout flight</div>
+                        <div id="neetInsight2">• At maximum height, vertical velocity = 0</div>
+                        <div id="neetInsight3">• Time up = Time down for same height levels</div>
+                        <div id="neetInsight4">• Maximum range occurs at 45° angle</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+                <div class="flex justify-between items-center mb-3">
+                    <h5 class="font-semibold text-green-800">
+                        <i class="fas fa-question-circle mr-1"></i>Practice Questions Based on Current Values
+                    </h5>
+                    <button onclick="generateQuestions()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors">
+                        <i class="fas fa-sync-alt mr-1"></i> Generate New
+                    </button>
+                </div>
+                <div id="practiceQuestions" class="space-y-3 text-sm text-green-800">
+                    <p class="text-center text-gray-500">Click "Launch Projectile" and then "Generate New" to see practice questions!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Global variables
+    let canvas, ctx;
+    let animationFrameId;
+    let trajectoryData = [];
+    let currentParams = {};
+    let isAnimating = false;
+    // ====== NEW: QUESTION POOL AND LOGIC ======
+    const questionPool = [
+        {
+            template: "What is the horizontal displacement (range) after {t} seconds?",
+            hint: "Use the formula: <strong>Range = Vₓ * time</strong>. First, find the horizontal velocity Vₓ = V₀ * cos(θ).",
+            calculate: (p) => {
+                const t = parseFloat((Math.random() * p.timeOfFlight * 0.7).toFixed(1));
+                const vx = p.v0 * Math.cos(p.angleRad);
+                const answer = vx * t;
+                return { 
+                    t: t, 
+                    answer: answer.toFixed(1) + ' m', 
+                    explanation: `The horizontal velocity Vₓ is ${vx.toFixed(1)} m/s. Displacement = ${vx.toFixed(1)} m/s × ${t} s.` 
+                };
+            }
+        },
+        {
+            template: "What is the vertical velocity (Vᵧ) of the projectile at t = {t} seconds?",
+            hint: "Use the formula: <strong>Vᵧ = Vᵧ₀ - g * t</strong>. First, find the initial vertical velocity Vᵧ₀ = V₀ * sin(θ).",
+            calculate: (p) => {
+                const t = parseFloat((Math.random() * p.timeOfFlight).toFixed(1));
+                const vy0 = p.v0 * Math.sin(p.angleRad);
+                const answer = vy0 - p.g * t;
+                return { 
+                    t: t, 
+                    answer: answer.toFixed(1) + ' m/s', 
+                    explanation: `The initial vertical velocity Vᵧ₀ is ${vy0.toFixed(1)} m/s. After ${t}s, Vᵧ = ${vy0.toFixed(1)} - (${p.g} * ${t}).` 
+                };
+            }
+        },
+        {
+            template: "At what time does the projectile reach its maximum height?",
+            hint: "At the peak, the vertical velocity Vᵧ is 0. Use the formula: <strong>t = Vᵧ₀ / g</strong>.",
+            calculate: (p) => {
+                const vy0 = p.v0 * Math.sin(p.angleRad);
+                const answer = vy0 / p.g;
+                return { 
+                    answer: answer.toFixed(2) + ' s', 
+                    explanation: `The initial vertical velocity Vᵧ₀ is ${vy0.toFixed(1)} m/s. Time to peak = ${vy0.toFixed(1)} m/s / ${p.g} m/s².` 
+                };
+            }
+        },
+        {
+            template: "What is the magnitude of the velocity vector at the highest point of the trajectory?",
+            hint: "At the peak, the vertical velocity is zero. The total velocity is equal to the horizontal velocity.",
+            calculate: (p) => {
+                const vx = p.v0 * Math.cos(p.angleRad);
+                const answer = vx;
+                return { 
+                    answer: answer.toFixed(1) + ' m/s', 
+                    explanation: `At the maximum height, Vᵧ = 0. The velocity is purely horizontal, so the magnitude is equal to Vₓ, which is ${vx.toFixed(1)} m/s.` 
+                };
+            }
+        },
+        {
+            template: "What is the vertical displacement (height) of the projectile after {t} seconds?",
+            hint: "Use the formula: <strong>y = Vᵧ₀ * t - (1/2)gt²</strong>. Remember to add the initial launch height if it's not zero.",
+            calculate: (p) => {
+                const t = parseFloat((Math.random() * p.timeOfFlight).toFixed(1));
+                const vy0 = p.v0 * Math.sin(p.angleRad);
+                const answer = p.h0 + (vy0 * t) - (0.5 * p.g * t * t);
+                return { 
+                    t: t, 
+                    answer: answer.toFixed(1) + ' m', 
+                    explanation: `Using y = h₀ + Vᵧ₀*t - 0.5*g*t², the height is ${p.h0} + (${vy0.toFixed(1)}*${t}) - (0.5*${p.g}*${t}²).` 
+                };
+            }
+        }
+    ];
+
+    // Initialize when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        canvas = document.getElementById('trajectoryCanvas');
+        ctx = canvas.getContext('2d');
+        
+        // Set canvas dimensions
+        function resizeCanvas() {
+            const container = document.getElementById('canvasContainer');
+            if (container) {
+                const rect = container.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                drawGrid();
+            }
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Add click event listener to canvas
+        canvas.addEventListener('click', handleCanvasClick);
+
+        updateSliderDisplays();
+        
+        document.getElementById('velocity').addEventListener('input', updateSliderDisplays);
+        document.getElementById('angle').addEventListener('input', updateSliderDisplays);
+        document.getElementById('gravity').addEventListener('input', updateSliderDisplays);
+        document.getElementById('height').addEventListener('input', updateSliderDisplays);
+        // ====== CORRECTED: EVENT LISTENER FOR HINT/ANSWER BUTTONS ======
+        document.getElementById('practiceQuestions').addEventListener('click', function(e) {
+            // Find the overall container for the question that was clicked in
+            const questionContainer = e.target.closest('.question-container');
+            if (!questionContainer) return; // Exit if the click was not on a button inside a question
+
+            // If the hint button was clicked, find and toggle the hint content
+            if (e.target.classList.contains('hint-btn')) {
+                const hintContent = questionContainer.querySelector('.hint-content');
+                if (hintContent) {
+                    hintContent.classList.toggle('hidden');
+                }
+            }
+
+            // If the answer button was clicked, find and toggle the answer content
+            if (e.target.classList.contains('answer-btn')) {
+                const answerContent = questionContainer.querySelector('.answer-content');
+                if (answerContent) {
+                    answerContent.classList.toggle('hidden');
+                }
+            }
+        });
+    });
+
+    function updateSliderDisplays() {
+        const velocity = document.getElementById('velocity').value;
+        const angle = document.getElementById('angle').value;
+        const gravity = document.getElementById('gravity').value;
+        const height = document.getElementById('height').value;
+        
+        document.getElementById('velocityValue').textContent = `${velocity} m/s`;
+        document.getElementById('angleValue').textContent = `${angle}°`;
+        document.getElementById('gravityValue').textContent = `${parseFloat(gravity).toFixed(1)} m/s²`;
+        document.getElementById('heightValue').textContent = `${height} m`;
+    }
+
+    function handleCanvasClick(event) {
+        if (trajectoryData.length === 0) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const clickY = event.clientY - rect.top;
+
+        // Find closest point on trajectory
+        let closestPoint = null;
+        let minDistance = Infinity;
+
+        trajectoryData.forEach(point => {
+            const distance = Math.sqrt(Math.pow(clickX - point.canvasX, 2) + Math.pow(clickY - point.canvasY, 2));
+            if (distance < minDistance && distance < 30) { // 30px tolerance
+                minDistance = distance;
+                closestPoint = point;
+            }
+        });
+
+        if (closestPoint) {
+            showPointAnalysis(closestPoint, clickX, clickY);
+        }
+    }
+
+    function showPointAnalysis(point, x, y) {
+        const analysisDiv = document.getElementById('pointAnalysis');
+        const contentDiv = document.getElementById('analysisContent');
+
+        const vMagnitude = Math.sqrt(point.vx * point.vx + point.vy * point.vy);
+        const ke = 0.5 * 1 * vMagnitude * vMagnitude; // Assuming unit mass
+        const pe = 1 * currentParams.g * point.y; // Assuming unit mass
+
+        contentDiv.innerHTML = `
+            <div><strong>Time:</strong> ${point.t.toFixed(2)} s</div>
+            <div><strong>Position:</strong> (${point.x.toFixed(1)}, ${point.y.toFixed(1)}) m</div>
+            <div><strong>Velocity:</strong> ${vMagnitude.toFixed(1)} m/s</div>
+            <div><strong>vₓ:</strong> ${point.vx.toFixed(1)} m/s</div>
+            <div><strong>vᵧ:</strong> ${point.vy.toFixed(1)} m/s</div>
+            <div><strong>KE:</strong> ${ke.toFixed(1)} J/kg</div>
+            <div><strong>PE:</strong> ${pe.toFixed(1)} J/kg</div>
+            <div><strong>Total E:</strong> ${(ke + pe).toFixed(1)} J/kg</div>
+            <div class="mt-2 text-xs text-blue-700">
+                <strong>NEET Note:</strong> Energy is conserved throughout the flight!
+            </div>
+        `;
+
+        analysisDiv.style.left = Math.min(x + 10, canvas.width - 200) + 'px';
+        analysisDiv.style.top = Math.max(y - 100, 10) + 'px';
+        analysisDiv.classList.remove('hidden');
+    }
+
+    function hideAnalysis() {
+        document.getElementById('pointAnalysis').classList.add('hidden');
+    }
+
+    function launchProjectile() {
+        const v0 = parseFloat(document.getElementById('velocity').value);
+        const angle = parseFloat(document.getElementById('angle').value);
+        const g = parseFloat(document.getElementById('gravity').value);
+        const h0 = parseFloat(document.getElementById('height').value);
+        
+        currentParams = { v0, angle, g, h0 };
+
+        const angleRad = angle * Math.PI / 180;
+        const vx = v0 * Math.cos(angleRad);
+        const vy0 = v0 * Math.sin(angleRad);
+        
+        // Calculate trajectory parameters
+        const discriminant = vy0 * vy0 + 2 * g * h0;
+        const timeOfFlight = (vy0 + Math.sqrt(discriminant)) / g;
+        const maxRange = vx * timeOfFlight;
+        const maxHeight = h0 + (vy0 * vy0) / (2 * g);
+        const initialKE = 0.5 * 1 * v0 * v0; // Assuming unit mass
+
+        // Update displays
+        document.getElementById('maxRange').textContent = `${maxRange.toFixed(1)} m`;
+        document.getElementById('maxHeight').textContent = `${maxHeight.toFixed(1)} m`;
+        document.getElementById('timeOfFlight').textContent = `${timeOfFlight.toFixed(2)} s`;
+        document.getElementById('initialKE').textContent = `${initialKE.toFixed(0)} J/kg`;
+
+        // Update velocity components
+        document.getElementById('vx').textContent = `${vx.toFixed(1)} m/s`;
+        document.getElementById('vy0').textContent = `${vy0.toFixed(1)} m/s`;
+        document.getElementById('vMaxHeight').textContent = `${vx.toFixed(1)} m/s`;
+        
+        const impactVy = -Math.sqrt(vy0 * vy0 + 2 * g * h0);
+        const impactVel = Math.sqrt(vx * vx + impactVy * impactVy);
+        document.getElementById('impactVel').textContent = `${impactVel.toFixed(1)} m/s`;
+
+        // Update NEET insights
+        updateNEETInsights(angle, maxRange, v0);
+        
+        clearTrajectory();
+        drawTrajectory(v0, angle, g, h0, maxRange, maxHeight);
+        generateQuestions();
+    }
+
+    function updateNEETInsights(angle, range, v0) {
+        const optimalRange = v0 * v0 / currentParams.g;
+        document.getElementById('neetInsight4').textContent = 
+            `• Maximum range (${optimalRange.toFixed(1)}m) occurs at 45° angle`;
+        
+        if (Math.abs(angle - 45) < 5) {
+            document.getElementById('neetInsight4').textContent += " ✓ Optimal!";
+        }
+    }
+
+    function animateTrajectory() {
+        if (trajectoryData.length === 0) {
+            launchProjectile();
+            return;
+        }
+
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const projectile = document.getElementById('projectile');
+        projectile.classList.remove('hidden');
+
+        let currentIndex = 0;
+        function animate() {
+            if (currentIndex >= trajectoryData.length) {
+                isAnimating = false;
+                setTimeout(() => projectile.classList.add('hidden'), 1000);
+                return;
+            }
+
+            const point = trajectoryData[currentIndex];
+            projectile.style.left = (point.canvasX - 6) + 'px';
+            projectile.style.top = (point.canvasY - 6) + 'px';
+
+            currentIndex += 2; // Skip frames for faster animation
+            setTimeout(animate, 50);
+        }
+
+        animate();
+    }
+
+    // ====== MODIFIED: generateQuestions FUNCTION ======
+    function generateQuestions() {
+        if (!currentParams.v0) {
+            document.getElementById('practiceQuestions').innerHTML = 
+                `<p class="text-center text-gray-500">Click "Launch Projectile" first to generate practice questions based on its values!</p>`;
+            return;
+        }
+        // --- Self-contained Calculations ---
+        // Ensure all necessary parameters are calculated within this function to prevent NaN errors.
+        const angleRad = currentParams.angle * Math.PI / 180;
+        const vy0 = currentParams.v0 * Math.sin(angleRad);
+        const discriminant = vy0 * vy0 + 2 * currentParams.g * currentParams.h0;
+        const timeOfFlight = (vy0 + Math.sqrt(discriminant)) / currentParams.g;
+
+        // Make derived parameters available to the question calculation functions
+        currentParams.angleRad = angleRad;
+        currentParams.timeOfFlight = timeOfFlight;
+
+        const questionsContainer = document.getElementById('practiceQuestions');
+        questionsContainer.innerHTML = ''; // Clear old questions
+
+        // Shuffle the pool and pick 3 unique questions
+        const shuffled = questionPool.sort(() => 0.5 - Math.random());
+        let selectedQuestions = shuffled.slice(0, 3);
+
+        selectedQuestions.forEach((q, index) => {
+            const data = q.calculate(currentParams);
+            let questionText = q.template;
+            if (data.t) {
+                questionText = questionText.replace('{t}', `<strong>${data.t}</strong>`);
+            }
+
+            const questionHTML = `
+                <div class="question-container border-t border-green-300 pt-3 mt-3 first:mt-0 first:border-t-0 first:pt-0">
+                    <p class="font-semibold text-green-900">${index + 1}. ${questionText}</p>
+                    <div class="flex space-x-2 mt-2">
+                        <button class="hint-btn text-xs bg-blue-100 text-blue-800 font-semibold px-3 py-1 rounded-md hover:bg-blue-200 transition-colors">Hint</button>
+                        <button class="answer-btn text-xs bg-amber-100 text-amber-800 font-semibold px-3 py-1 rounded-md hover:bg-amber-200 transition-colors">Answer</button>
+                    </div>
+                    <div class="hint-content hidden mt-2 p-2 bg-blue-50 border border-blue-200 rounded text-xs text-blue-900">${q.hint}</div>
+                    <div class="answer-content hidden mt-2 p-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-900">
+                        <strong>Answer:</strong> ${data.answer}<br>
+                        <strong>Explanation:</strong> ${data.explanation}
+                    </div>
+                </div>
+            `;
+            questionsContainer.insertAdjacentHTML('beforeend', questionHTML);
+        });
+    }
+
+    function clearTrajectory() {
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+        trajectoryData = [];
+        isAnimating = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawGrid();
+        hideAnalysis();
+        document.getElementById('projectile').classList.add('hidden');
+    }
+
+    function drawGrid() {
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1;
+        
+        const gridSize = 30;
+        for (let x = 0; x < canvas.width; x += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+        }
+        
+        for (let y = 0; y < canvas.height; y += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+        }
+
+        // Ground line
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - 20);
+        ctx.lineTo(canvas.width, canvas.height - 20);
+        ctx.stroke();
+    }
+
+    function drawTrajectory(v0, angle, g, h0, maxRange, maxHeight) {
+        trajectoryData = [];
+        const angleRad = angle * Math.PI / 180;
+        const vx = v0 * Math.cos(angleRad);
+        const vy0 = v0 * Math.sin(angleRad);
+        
+        const scaleX = (canvas.width - 40) / maxRange;
+        const scaleY = (canvas.height - 40) / (maxHeight > 0 ? maxHeight : 1); // Avoid division by zero
+        const scale = Math.min(scaleX, scaleY);
+        
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        
+        const startY = canvas.height - 20 - (h0 * scale);
+        ctx.moveTo(20, startY);
+
+        const discriminant = vy0 * vy0 + 2 * g * h0;
+        const totalTime = (vy0 + Math.sqrt(discriminant)) / g;
+        
+        for (let t = 0; t <= totalTime; t += totalTime / 200) {
+            const x = vx * t;
+            const y = h0 + vy0 * t - 0.5 * g * t * t;
+            
+            if (y >= 0) {
+                const canvasX = (x * scale) + 20;
+                const canvasY = canvas.height - 20 - (y * scale);
+                
+                ctx.lineTo(canvasX, canvasY);
+                
+                // Store trajectory data for click analysis
+                trajectoryData.push({
+                    t: t,
+                    x: x,
+                    y: y,
+                    vx: vx,
+                    vy: vy0 - g * t,
+                    canvasX: canvasX,
+                    canvasY: canvasY
+                });
+            }
+        }
+        ctx.stroke();
+
+        // Mark special points
+        // Maximum height point
+        const tMax = vy0 / g;
+        if (tMax > 0 && tMax < totalTime) {
+            const xMax = vx * tMax;
+            const yMax = h0 + (vy0 * vy0) / (2 * g);
+            const canvasXMax = (xMax * scale) + 20;
+            const canvasYMax = canvas.height - 20 - (yMax * scale);
+            
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(canvasXMax, canvasYMax, 6, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
+        // Landing point
+        const xLand = vx * totalTime;
+        const canvasXLand = (xLand * scale) + 20;
+        const canvasYLand = canvas.height - 20;
+        
+        ctx.fillStyle = '#22c55e';
+        ctx.beginPath();
+        ctx.arc(canvasXLand, canvasYLand, 6, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+</script>
+{% endblock %}

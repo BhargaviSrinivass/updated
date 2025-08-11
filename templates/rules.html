@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Test Instructions{% endblock %}
+
+{% block content %}
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-animated {
+        animation: fadeIn 0.6s ease-in-out forwards;
+    }
+
+    .icon-box {
+        background-color: #eef2ff; /* indigo-100 */
+        color: #4338ca; /* indigo-700 */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+    }
+
+    .highlight-card {
+        border: 1px solid #e5e7eb; /* gray-200 */
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+    }
+    
+    .ready-prompt {
+        font-size: 1.5rem; /* 24px */
+        font-weight: 600; /* semibold */
+        margin-top: 2rem;
+        color: #374151; /* gray-700 */
+    }
+
+    .take-test-btn {
+        background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%); /* green-600 to green-500 */
+        transition: all 0.3s ease;
+    }
+    .take-test-btn:hover {
+        box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+    }
+</style>
+
+<div class="bg-white p-8 sm:p-12 rounded-2xl shadow-xl max-w-4xl mx-auto border border-gray-200 card-animated">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Test Instructions</h1>
+        <p class="text-gray-500">Please read these instructions carefully before you begin.</p>
+    </div>
+
+    <!-- Key Information Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <!-- Number of Questions Card -->
+        <div class="highlight-card">
+            <div class="icon-box">
+                <i class="fas fa-list-ol text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">25 Questions</h3>
+            <p class="text-gray-600 mt-1">The test consists of Text/Numerical Based Questions or Fill in the Blank Questions.</p>
+        </div>
+
+        <!-- Time Limit Card -->
+        <div class="highlight-card">
+            <div class="icon-box">
+                <i class="fas fa-clock text-3xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">30 Minutes</h3>
+            <p class="text-gray-600 mt-1">You will have a strict time limit to complete the test.</p>
+        </div>
+    </div>
+
+    <!-- Main Rules List -->
+    <div class="prose max-w-none bg-gray-50 p-6 rounded-lg">
+        <h3 class="text-lg font-semibold">Important Rules:</h3>
+        <ul class="space-y-2 mt-2">
+            <li>Once you start the test, the <strong>timer will begin and cannot be paused</strong>.</li>
+            <li>Ensure you have a stable internet connection.</li>
+            <li>Do not refresh the page during the test.</li>
+            <li>There is no negative marking for incorrect answers.</li>
+        </ul>
+    </div>
+
+    <!-- Final Prompt -->
+    <div class="text-center mt-10">
+        <p class="ready-prompt">Are you ready to begin?</p>
+    </div>
+
+    <!-- Take Test Button -->
+    <div class="text-center mt-6">
+        <a href="{{ url_for('assessment.start_test') }}" class="w-full sm:w-auto inline-block take-test-btn text-white font-bold py-4 px-16 rounded-lg text-xl transform hover:scale-105 shadow-lg">
+            Take Test
+        </a>
+    </div>
+</div>
+{% endblock %}
+
