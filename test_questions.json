@@ -36,7 +36,7 @@
   {"id": 6, "text": "What comes after 99?", "answer": "100"},
   {"id": 7, "text": "How many sides does a triangle have?", "answer": "3"},
   {"id": 8, "text": "A square has how many corners?", "answer": "4"},
-  {"id": 9, "text": "How many months are there in a year?", "answer": "12"}
+  {"id": 9, "text": "How many months are there in a year?", "answer": "12"},
   {"id": 10, "text": "How many sides does a rectangle have?", "answer": "4"},
   {"id": 11, "text": "25 balloons + 15 flowers = ?", "answer": "40"},
   {"id": 12, "text": "You had 40 sweets. You gave 10 to friends. How many more left?", "answer": "30"},
