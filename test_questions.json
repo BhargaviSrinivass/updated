@@ -1,10 +1,11 @@
 {
+  
   "1": [
     {"id": 13, "text": "How many eyes does a human have?", "answer": "2"},
     {"id": 1, "text": "Count the number of sides of a rectangle.", "answer": "4"},
     {"id": 23, "text": "How many fingers are there on both hands?", "answer": "10"},
     {"id": 24, "text": "What is the shape of a ball?", "answer": "Sphere"},
-    {"id": 9, "text": "Which coin is worth 1 rupee?", "answer": "1"},
+    {"id": 1, "text": "Write the first natural number.", "answer": "1"},
     {"id": 5, "text": "How many hours are there in one day?", "answer": "24"},
     {"id": 25, "text": "What is 5 + 0?", "answer": "5"},
     {"id": 21, "text": "What is 6 − 4?", "answer": "2"},
@@ -24,249 +25,441 @@
     {"id": 11, "text": "How many tens are there in 50?", "answer": "5"},
     {"id": 16, "text": "Count to 30 by tens: 10, 20, __, 40.", "answer": "30"},
     {"id": 18, "text": "If you save ₹2 each day, how much in 5 days?", "answer": "₹10"},
-    {"id": 22, "text": "Divide 4 groups of 2 candies: total 8 candies. How many per group?", "answer": "2"}
+     {"id": 8, "text": "Write the next number after 7.", "answer": "8"}
   ],
   "2": [
-    {"id": 21, "text": "How many ones make ten?", "answer": "10"},
-    {"id": 3, "text": "How many tens are there in 70?", "answer": "7"},
-    {"id": 18, "text": "What comes after 99?", "answer": "100"},
-    {"id": 9, "text": "What is 10 more than 67?", "answer": "77"},
-    {"id": 25, "text": "How many 10-rupee notes in ₹100?", "answer": "10"},
-    {"id": 4, "text": "What is half of 14?", "answer": "7"},
-    {"id": 14, "text": "What is half of 20?", "answer": "10"},
-    {"id": 24, "text": "Group 8 items into 2 equal groups. How many per group?", "answer": "4"},
-    {"id": 23, "text": "What is 25 − 5?", "answer": "20"},
-    {"id": 22, "text": "What is 14 + 6?", "answer": "20"},
-    {"id": 10, "text": "Count by fives to reach 35.", "answer": "7"},
-    {"id": 6, "text": "What is 5 × 4?", "answer": "20"},
-    {"id": 7, "text": "What is 20 ÷ 5?", "answer": "4"},
-    {"id": 19, "text": "What is 3 × 6?", "answer": "18"},
-    {"id": 12, "text": "What is 2 × 9?", "answer": "18"},
-    {"id": 13, "text": "What is 27 ÷ 3?", "answer": "9"},
-    {"id": 20, "text": "What is 36 ÷ 6?", "answer": "6"},
-    {"id": 1, "text": "What is 15 + 9?", "answer": "24"},
-    {"id": 2, "text": "What is 20 − 7?", "answer": "13"},
-    {"id": 16, "text": "Add 34 + 23.", "answer": "57"},
-    {"id": 17, "text": "Subtract 50 − 19.", "answer": "31"},
-    {"id": 5, "text": "How much change from ₹50 if you spend ₹30?", "answer": "₹20"},
-    {"id": 11, "text": "What is 100 − 88?", "answer": "12"},
-    {"id": 8, "text": "Write the number 53 as tens and ones.", "answer": "5 tens 3 ones"},
-    {"id": 15, "text": "If you have ₹5 coins and you have 4, how much money?", "answer": "20"}
-  ],
+  {"id": 1, "text": "There are 3 baskets. Each basket has 8 oranges. How many oranges are there?", "answer": "24"},
+  {"id": 2, "text": "12 pencils are shared equally among 4 friends. How many pencils does each get?", "answer": "3"},
+  {"id": 3, "text": "Name one thing in your home shaped like a ball.", "answer": "Football"},
+  {"id": 4, "text": "A cold drink can is which 3D shape?", "answer": "Cylinder"},
+  {"id": 5, "text": "What comes before 50?", "answer": "49"},
+  {"id": 6, "text": "What comes after 99?", "answer": "100"},
+  {"id": 7, "text": "How many sides does a triangle have?", "answer": "3"},
+  {"id": 8, "text": "A square has how many corners?", "answer": "4"},
+  {"id": 9, "text": "How many months are there in a year?", "answer": "12"}
+  {"id": 10, "text": "How many sides does a rectangle have?", "answer": "4"},
+  {"id": 11, "text": "25 balloons + 15 flowers = ?", "answer": "40"},
+  {"id": 12, "text": "You had 40 sweets. You gave 10 to friends. How many more left?", "answer": "30"},
+  {"id": 13, "text": "A stick is 2 metres long. You cut 1 metre. How much is left?", "answer": "1"},
+  {"id": 14, "text": "There are 15 ducks in a pond. 7 more join them. How many ducks now?", "answer": "22"},
+  {"id": 15, "text": "3 baskets with 6 apples each. How many apples?", "answer": "18"},
+  {"id": 16, "text": "20 chocolates shared among 5 kids. How many each?", "answer": "4"},
+  {"id": 17, "text": "How many days in a week?", "answer": "7"},
+  {"id": 18, "text": "If today is Friday, what day will it be after 3 days?", "answer": "Monday"},
+  {"id": 19, "text": "A toy costs ₹20, a ball costs ₹15. How much for both?", "answer": "35"},
+  {"id": 20, "text": "You have ₹50. You buy a pen for ₹30. How much left?", "answer": "20"},
+  {"id": 21, "text": "8 kids like mangoes, 5 like apples. Which fruit do more kids like?", "answer": "Mangoes"},
+  {"id": 22, "text": "In a chart, each picture of an ice cream means 2 ice creams. Draw 3 pictures. How many ice creams?", "answer": "6"},
+  {"id": 23, "text": "There are 100 pages in a book. You read 45 pages. How many pages are left?", "answer": "55"},
+  {"id": 24, "text": "Ravi has 9 pencils. His friend gives him 6 more. How many pencils does Ravi have now?", "answer": "15"},
+  {"id": 25, "text": "A basket has 50 mangoes. 20 are taken out. How many are left?", "answer": "30"}
+],
   "3": [
-    {"id": 16, "text": "Tell time: Half past 6.", "answer": "6:30"},
-    {"id": 11, "text": "How many sides in a pentagon?", "answer": "5"},
-    {"id": 22, "text": "Add 75 + 25.", "answer": "100"},
-    {"id": 9, "text": "Divide: 81 ÷ 9.", "answer": "9"},
-    {"id": 10, "text": "What is 0.5 + 0.3?", "answer": "0.8"},
-    {"id": 23, "text": "Subtract: 100 − 37.", "answer": "63"},
-    {"id": 17, "text": "What is 250 − 125?", "answer": "125"},
-    {"id": 18, "text": "Count to 100 by tens: 10, 20, __, 40.", "answer": "30"},
-    {"id": 15, "text": "What comes next in sequence: 5, 10, 15, __?", "answer": "20"},
-    {"id": 21, "text": "How many centimeters in 2 meters?", "answer": "200"},
-    {"id": 8, "text": "Multiply: 25 × 4.", "answer": "100"},
-    {"id": 20, "text": "Divide: 144 ÷ 12.", "answer": "12"},
-    {"id": 6, "text": "What is 123 + 456?", "answer": "579"},
-    {"id": 7, "text": "Subtract: 500 − 285.", "answer": "215"},
-    {"id": 1, "text": "What is 7 × 8?", "answer": "56"},
-    {"id": 19, "text": "Multiply: 12 × 12.", "answer": "144"},
-    {"id": 14, "text": "What is 14 × 12?", "answer": "168"},
-    {"id": 2, "text": "65 ÷ 5", "answer": "13"},
-    {"id": 3, "text": "Write ¼ as a decimal.", "answer": "0.25"},
-    {"id": 24, "text": "What is 0.75 as a fraction?", "answer": "3/4"},
-    {"id": 12, "text": "Write 3/5 as a percentage.", "answer": "60"},
-    {"id": 5, "text": "What time is 30 minutes after 3:20 PM?", "answer": "3:50 PM"},
-    {"id": 13, "text": "Area of square side 5 cm.", "answer": "25"},
-    {"id": 4, "text": "Perimeter of a 4 cm × 3 cm rectangle.", "answer": "14"},
-    {"id": 25, "text": "Perimeter of equilateral triangle side 6 cm.", "answer": "18"}
-  ],
+  {"id": 1, "text": "684 - 421", "answer": "263"},
+  {"id": 2, "text": "Write the place value of 7 in 478.", "answer": "70"},
+  {"id": 3, "text": "Write the biggest number: 325, 312, 319.", "answer": "319"},
+  {"id": 4, "text": "120 + 245.", "answer": "365"},
+  {"id": 5, "text": "320-100.", "answer": "220"},
+  {"id": 6, "text": "11 X 6", "answer": "66"},
+  {"id": 7, "text": "Divide 56 by 7.", "answer": "8"},
+  {"id": 8, "text": "Write the number that comes after 399.", "answer": "400"},
+  {"id": 9, "text": "Write the number that comes before 501.", "answer": "500"},
+  {"id": 10, "text": "Round 48 to the nearest ten.", "answer": "50"},
+  {"id": 11, "text": "36/2", "answer": "18"},
+  {"id": 12, "text": "20/4", "answer": "5"},
+  {"id": 13, "text": "Write the smallest 3-digit number.", "answer": "100"},
+  {"id": 14, "text": "Write the largest 2-digit number.", "answer": "99"},
+  {"id": 15, "text": "How many sides does a rectangle have?", "answer": "4"},
+  {"id": 16, "text": "How many sides does a square have?", "answer": "4"},
+  {"id": 17, "text": "Write the number which has 5 in tens place and 8 in ones.", "answer": "58"},
+  {"id": 18, "text": "Write the expanded form of 472.", "answer": "400+70+2"},
+  {"id": 19, "text": "Add 325 and 468.", "answer": "793"},
+  {"id": 20, "text": "Subtract 250 from 500.", "answer": "250"},
+  {"id": 21, "text": "Multiply 15 by 4.", "answer": "60"},
+  {"id": 22, "text": "Divide 81 by 9.", "answer": "9"},
+  {"id": 23, "text": "How many sides does triangle have?", "answer": "3"},
+  {"id": 24, "text": "Write the number that is 100 more than 356.", "answer": "456"},
+  {"id": 25, "text": "Write the number that is 50 less than 620.", "answer": "570"}
+],
   "4": [
-    {"id": 19, "text": "What is 7 × 0?", "answer": "0"},
-    {"id": 20, "text": "What is 9 ÷ 1?", "answer": "9"},
-    {"id": 16, "text": "Add: 0.75 + 0.25.", "answer": "1.0"},
-    {"id": 21, "text": "Double of 13.", "answer": "26"},
-    {"id": 22, "text": "Half of 28.", "answer": "14"},
-    {"id": 23, "text": "How many edges does a cube have?", "answer": "12"},
-    {"id": 9, "text": "What is 14.2 + 6.8?", "answer": "21.0"},
-    {"id": 17, "text": "Subtract: 5.05 − 2.5.", "answer": "2.55"},
-    {"id": 3, "text": "Multiply: 12.5 × 4.", "answer": "50"},
-    {"id": 12, "text": "Divide: 144 ÷ 16.", "answer": "9"},
-    {"id": 5, "text": "What is 2/3 of 60?", "answer": "40"},
-    {"id": 13, "text": "What is 15% of 200?", "answer": "30"},
-    {"id": 24, "text": "Simplify: 2 + 3 × 4.", "answer": "14"},
-    {"id": 1, "text": "Add 245 + 1,378.", "answer": "1,623"},
-    {"id": 2, "text": "Subtract: 1,000 − 587.", "answer": "413"},
-    {"id": 10, "text": "Subtract: 100.5 − 25.75.", "answer": "74.75"},
-    {"id": 11, "text": "Multiply: 15 × 15.", "answer": "225"},
-    {"id": 15, "text": "Convert ₹3.50 into paise.", "answer": "350"},
-    {"id": 6, "text": "Convert 3 km into meters.", "answer": "3,000 m"},
-    {"id": 18, "text": "Find the perimeter of rectangle 8 cm × 5 cm.", "answer": "26"},
-    {"id": 8, "text": "Perimeter of regular hexagon side = 5 cm.", "answer": "30"},
-    {"id": 25, "text": "What is the area of square side = 7 cm?", "answer": "49"},
-    {"id": 7, "text": "Area of a right triangle base = 6 cm, height = 3 cm.", "answer": "9"},
-    {"id": 14, "text": "Volume of cube side = 4 cm.", "answer": "64"},
-    {"id": 4, "text": "Find factors of 36.(use commas)", "answer": "1,2,3,4,6,9,12,18,36"}
-  ],
+  {"id": 1, "text": "How many sides does a rectangle have?", "answer": "4"},
+  {"id": 2, "text": "How many sides does a triangle have?", "answer": "3"},
+  {"id": 3, "text": "Find the product of 30 and 9.", "answer": "270"},
+  {"id": 4, "text": "Write the number for Five thousand three hundred eighty-one", "answer": "5381"},
+  {"id": 5, "text": "What is the place value of 5 in 75670?", "answer": "5000"},
+  {"id": 6, "text": "Divide 3000 by 100", "answer": "30"},
+  {"id": 7, "text": "What is the successor of 8999?", "answer": "9000"},
+  {"id": 8, "text": "Multiply 25 by 30.", "answer": "750"},
+  {"id": 9, "text": "Divide 72 by 12.", "answer": "6"},
+  {"id": 10, "text": "Add: 120 + 15.", "answer": "135"},
+  {"id": 11, "text": "Add: 12 + 8.", "answer": "20"},
+  {"id": 12, "text": "Divide 640 by 8.", "answer": "80"},
+  {"id": 13, "text": "Add: 2/9 + 3/9.", "answer": "5/9"},
+  {"id": 14, "text": "Add: 5/8 + 7/8.", "answer": "1 1/2"},
+  {"id": 15, "text": "Are 2/3 and 10/15 equivalent fractions(answer in yes or no?", "answer": "yes"},
+  {"id": 16, "text": "How many sides does a pentagon have?", "answer": "5"},
+  {"id": 17, "text": "How many corners does a square have?", "answer": "4"},
+  {"id": 18, "text": "Multiply 45 by 6.", "answer": "270"},
+  {"id": 19, "text": "Subtract 387 from 1000.", "answer": "613"},
+  {"id": 20, "text": "Write the smallest 4-digit number.", "answer": "1000"},
+  {"id": 21, "text": "Write the largest 3-digit number.", "answer": "999"},
+  {"id": 22, "text": "Find the quotient when 144 is divided by 12.", "answer": "12"},
+  {"id": 23, "text": "Write the predecessor of 1050.", "answer": "1049"},
+  {"id": 24, "text": "Find the sum of 700 and 385.", "answer": "1085"},
+  {"id": 25, "text": "Find the difference between 5000 and 2750.", "answer": "2250"}
+],
   "5": [
-    {"id": 14, "text": "Add 0.75 + 0.25.", "answer": "1"},
-    {"id": 17, "text": "Double of 13.", "answer": "26"},
-    {"id": 18, "text": "Half of 28.", "answer": "14"},
-    {"id": 16, "text": "How many edges does a cube have?", "answer": "12"},
-    {"id": 10, "text": "What is 2.5 × 4?", "answer": "10"},
-    {"id": 22, "text": "Divide: 144 ÷ 12.", "answer": "12"},
-    {"id": 23, "text": "What is 1/4 of 100?", "answer": "25"},
-    {"id": 5, "text": "Name the 5-edged shape.", "answer": "Pentagon"},
-    {"id": 13, "text": "Convert ₹3.50 into paise.", "answer": "350"},
-    {"id": 1, "text": "Convert 5 m to cm.", "answer": "500"},
-    {"id": 15, "text": "Subtract: 5.05 − 2.5.", "answer": "2.55"},
-    {"id": 20, "text": "Subtract: 10.2 − 3.7.", "answer": "6.5"},
-    {"id": 3, "text": "What is 15% of 200?", "answer": "30"},
-    {"id": 11, "text": "Express 2/5 as percentage.", "answer": "40%"},
-    {"id": 24, "text": "Write 0.6 as fraction.", "answer": "3/5"},
-    {"id": 21, "text": "Multiply: 18 × 11.", "answer": "198"},
-    {"id": 6, "text": "Add: 256 + 789.", "answer": "1045"},
-    {"id": 7, "text": "Subtract: 1500 − 678.", "answer": "822"},
-    {"id": 8, "text": "Multiply: 25 × 12.", "answer": "300"},
-    {"id": 9, "text": "Divide: 1000 ÷ 25.", "answer": "40"},
-    {"id": 12, "text": "Perimeter of square side 8 cm.", "answer": "32"},
-    {"id": 25, "text": "Perimeter of triangle 5 cm, 6 cm, 7 cm.", "answer": "18"},
-    {"id": 19, "text": "Area of square side 7 cm.", "answer": "49"},
-    {"id": 4, "text": "Area of triangle base 10 cm, height 6 cm.", "answer": "30"},
-    {"id": 2, "text": "Volume of cuboid 5 cm × 3 cm × 2 cm.", "answer": "30"}
-  ],
+  {"id": 1, "text": "A fish seller sold 35 fish in the morning and 27 in the evening. How many fish in total?", "answer": "62"},
+  {"id": 2, "text": "Name a shape with 3 sides. (write in small letters)", "answer": "triangle"},
+  {"id": 3, "text": "A square has side 50 m. What is its perimeter?", "answer": "200"},
+  {"id": 4, "text": "A rectangle is 12 cm long and 8 cm wide. What is its area?", "answer": "96"},
+  {"id": 5, "text": "Add 1/4 and 3/4.", "answer": "1"},
+  {"id": 6, "text": "How many sides does a pentagon have?", "answer": "5"},
+  {"id": 7, "text": "3020 + 5060 = ?", "answer": "8080"},
+  {"id": 8, "text": "Find the next number: 5, 10, 20, 40, __", "answer": "80"},
+  {"id": 9, "text": "On a map, 1 cm = 5 km. Two towns are 7 cm apart. How far in km?", "answer": "35 km"},
+  {"id": 10, "text": "How many sides does a square have?", "answer": "4"},
+  {"id": 11, "text": "Convert ₹2.45 to paise.", "answer": "245"},
+  {"id": 12, "text": "Area of a rectangle is 48 cm². Breadth is 6 cm. Find the length.", "answer": "8"},
+  {"id": 13, "text": "15 like apples, 10 like bananas, 5 like both. How many students total?", "answer": "20"},
+  {"id": 14, "text": "Subtract: 6/10 - 2/10.", "answer": "4/10"},
+  {"id": 15, "text": "A pen costs ₹15. What is the cost of 3 pens?", "answer": "45"},
+  {"id": 16, "text": "Add 1/3 and 2/3.", "answer": "1"},
+  {"id": 17, "text": "Perimeter of a triangle is 48 cm. Two sides are 15 cm and 17 cm. Find the third side.", "answer": "16"},
+  {"id": 18, "text": "Convert 3000 g to kg.", "answer": "3"},
+  {"id": 19, "text": "56 oranges in 7 baskets. How many in each basket? (Hint : Division)", "answer": "8"},
+  {"id": 20, "text": "A field is 90 m long and 60 m wide. Find its perimeter.", "answer": "300"},
+  {"id": 21, "text": "93 ÷ 3", "answer": "31"},
+  {"id": 22, "text": "Name a 2D shapes with 0 sides", "answer": "circle"},
+  {"id": 23, "text": "What is the perimeter of triangle if the sides are 10,13,15.", "answer": "38"},
+  {"id": 24, "text": "Which is bigger:  3/8 or 7/8?", "answer": "7/8"},
+  {"id": 25, "text": "A tank has 25 L water. How many 5 L buckets to empty it?", "answer": "5"}
+],
   "6": [
-    {"id": 10, "text": "What is 5 × 0?", "answer": "0"},
-    {"id": 11, "text": "Divide: 81 ÷ 9.", "answer": "9"},
-    {"id": 15, "text": "Compute 12 ÷ 4.", "answer": "3"},
-    {"id": 20, "text": "Add: 0.4 + 0.6.", "answer": "1"},
-    {"id": 21, "text": "Half of 0.8.", "answer": "0.4"},
-    {"id": 1, "text": "Simplify: −5 + 8.", "answer": "3"},
-    {"id": 18, "text": "What is −10 + (−5)?", "answer": "−15"},
-    {"id": 22, "text": "Simplify: 9 − (−3).", "answer": "12"},
-    {"id": 3, "text": "Solve: x + 7 = 12.", "answer": "5"},
-    {"id": 25, "text": "Solve x − 4 = 2.", "answer": "6"},
-    {"id": 13, "text": "What is 14.2 + 6.8?", "answer": "21.0"},
-    {"id": 14, "text": "What is 15% of 40?", "answer": "6"},
-    {"id": 7, "text": "What is 1.5 + 2.35?", "answer": "3.85"},
-    {"id": 16, "text": "Simplify 5 × (4 + 3).", "answer": "35"},
-    {"id": 24, "text": "Convert 150 cm to meters.", "answer": "1.5"},
-    {"id": 6, "text": "Convert 3 km to meters.", "answer": "3000"},
-    {"id": 12, "text": "Write 0.75 as fraction.", "answer": "3/4"},
-    {"id": 5, "text": "Write 3/4 as percentage.", "answer": "75"},
-    {"id": 19, "text": "Find 2/3 of 90.", "answer": "60"},
-    {"id": 2, "text": "Ratio of 12 to 18.", "answer": "2:3"},
-    {"id": 23, "text": "Ratio 8:4 simplifies to?", "answer": "2:1"},
-    {"id": 17, "text": "Count symmetry lines of a square.", "answer": "4"},
-    {"id": 9, "text": "Area of square side 6 cm.", "answer": "36"},
-    {"id": 8, "text": "Perimeter of rectangle 8 cm × 5 cm.", "answer": "26"},
-    {"id": 4, "text": "Surface area of cube side 4 cm (all faces).", "answer": "96"}
-  ],
+  {
+    "id": 1,
+    "text": "What is the smallest 5-digit number?",
+    "answer": "10000"
+  },
+  {
+    "id": 2,
+    "text": "Write the number \"Ninety five lakh forty one\" in numerals.",
+    "answer": "9500041"
+  },
+  {
+    "id": 3,
+    "text": "What is the sum of the first 10 natural numbers?",
+    "answer": "55"
+  },
+  {
+    "id": 4,
+    "text": "If we add 1 to the largest 6-digit number, what is the result?",
+    "answer": "1000000"
+  },
+  {
+    "id": 5,
+    "text": "If a number is increased by 8 and the result is 15, what is the number?",
+    "answer": "7"
+  },
+  {
+    "id": 6,
+    "text": "What is the 5th term in the sequence 2, 4, 6, 8, ... ?",
+    "answer": "10"
+  },
+  {
+    "id": 7,
+    "text": "Find the missing number in 8, 16, __, 64, 128.",
+    "answer": "32"
+  },
+  {
+    "id": 8,
+    "text": "Find the side of a square whose perimeter is 32 cm.",
+    "answer": "8"
+  },
+  {
+    "id": 9,
+    "text": "What is the sum of the first 5 odd numbers?",
+    "answer": "25"
+  },
+  {
+    "id": 10,
+    "text": "A wall is 5 meters long and 3 meters high. If each brick is 25 cm long and 15 cm high, how many bricks are needed to build the wall?",
+    "answer": "400"
+  },
+  {
+    "id": 11,
+    "text": "If you have 15 apples and you give away 1/5 of them, how many apples do you give away?",
+    "answer": "3"
+  },
+  {
+    "id": 12,
+    "text": "A pictograph shows books read by a class in a week, where each book icon represents 5 books. If 7 icons are shown for Tuesday, how many books were read on Tuesday?",
+    "answer": "35"
+  },
+  {
+    "id": 13,
+    "text": "shopkeeper sold 48 pencils in the morning and 76 pencils in the evening. How many pencils did he sell in total?",
+    "answer": "124"
+  },
+  {
+    "id": 14,
+    "text": "The cost of 5 notebooks is \u20b9125. What is the cost of 8 notebooks at the same rate?",
+    "answer": "200"
+  },
+  {
+    "id": 15,
+    "text": "Find the perimeter of a rectangle with sides 40 cm and 10 cm.",
+    "answer": "100"
+  },
+  {
+    "id": 16,
+    "text": "Calculate length of wooden strip needed to frame a 32 cm by 21 cm photograph. (Hint: it is Rectangle, Maybe use perimeter)",
+    "answer": "06"
+  },
+  {
+    "id": 17,
+    "text": "A rectangular park is 90 m long and 50 m wide. Find its perimeter.",
+    "answer": "280"
+  },
+  {
+    "id": 18,
+    "text": "What fraction of a day is 8 hours?",
+    "answer": "1/3."
+  },
+  {
+    "id": 19,
+    "text": "Find the value of 12\u00d715\u221245\u00f75",
+    "answer": "171"
+  },
+  {
+    "id": 20,
+    "text": "Calculate total distance Naresh walked if he walked 2 km 35 m in the morning and 1 km 7 m in the evening in meters.",
+    "answer": "3042"
+  },
+  {
+    "id": 21,
+    "text": "The difference between the value and face place value of 4 in 2416 is",
+    "answer": "396"
+  },
+  {
+    "id": 22,
+    "text": "Find the combined weight of two fish weighing (1/2) kg and (1/4) kg",
+    "answer": "3/4"
+  },
+  {
+    "id": 23,
+    "text": "How many lines of symmetry does a rectangle have?",
+    "answer": "2"
+  }
+],
   "7": [
     {"id": 15, "text": "Fraction 3/4 as decimal.", "answer": "0.75"},
     {"id": 22, "text": "Convert 50% to fraction.", "answer": "1/2"},
     {"id": 9, "text": "Convert 0.25 to fraction.", "answer": "1/4"},
-    {"id": 25, "text": "What is 10 × 0.1?", "answer": "1"},
+    {"id": 25, "text": "What is 10 × 0.01?", "answer": "0.1"},
     {"id": 18, "text": "What is 5²?", "answer": "25"},
     {"id": 1, "text": "Compute 2⁴.", "answer": "16"},
-    {"id": 11, "text": "Exponent: 3³.", "answer": "27"},
+    {"id": 11, "text": "Compute 3³.", "answer": "27"},
     {"id": 17, "text": "Simplify: 7 + (−2).", "answer": "5"},
     {"id": 6, "text": "Subtract: (−5) − (−2).", "answer": "−3"},
-    {"id": 19, "text": "Add: 125 + 375.", "answer": "500"},
-    {"id": 20, "text": "Subtract: 500 − 275.", "answer": "225"},
-    {"id": 14, "text": "Convert ₹2.75 to paise.", "answer": "275"},
+    {"id": 19, "text": "Add: 125.25 + 375.75", "answer": "501"},
+    {"id": 20, "text": "Subtract: 500.56 − 275.78", "answer": "224.78"},
+    {"id": 14, "text": "Convert ₹2.75 to paise (write only number)", "answer": "275"},
     {"id": 2, "text": "Solve: 3x = 15.", "answer": "5"},
     {"id": 12, "text": "Solve: x − 4 = 7.", "answer": "11"},
     {"id": 24, "text": "Solve: 4x + 2 = 18.", "answer": "4"},
     {"id": 8, "text": "What is 25% of 80?", "answer": "20"},
     {"id": 7, "text": "Simplify: x + x + x when x = 3.", "answer": "9"},
-    {"id": 16, "text": "Ratio of 18 to 6.", "answer": "3:1"},
+    {"id": 16, "text": "Ratio of 18 to 6. (write in the form of x:y)", "answer": "3:1"},
     {"id": 4, "text": "Mean of 3, 6, 9, 12, 15.", "answer": "9"},
-    {"id": 23, "text": "Mean of 5, 15, 25.", "answer": "15"},
+    {"id": 23, "text": "what is the profit, if CP ₹1000, SP ₹1250? ", "answer": "250"},
     {"id": 5, "text": "Area of rectangle 7 cm × 4 cm.", "answer": "28"},
     {"id": 10, "text": "Perimeter of square side 9 cm.", "answer": "36"},
     {"id": 13, "text": "Area triangle base 8 cm, height 5 cm.", "answer": "20"},
-    {"id": 21, "text": "Count edges of triangular prism.", "answer": "9"},
-    {"id": 3, "text": "Profit% if CP ₹100, SP ₹120?", "answer": "20%"}
+    {"id": 21, "text": "HCF of 16,40", "answer": "8"},
+    {"id": 3, "text": "what is Loss if CP ₹100, SP ₹70? (only write numbers)", "answer": "30"}
   ],
   "8": [
-    {"id": 18, "text": "Add: 0.05 + 0.95.", "answer": "1"},
-    {"id": 20, "text": "Multiply: 0.5 × 0.2.", "answer": "0.1"},
-    {"id": 19, "text": "Subtract: (−4) – (−7).", "answer": "3"},
-    {"id": 15, "text": "Simplify: 4² + 4.", "answer": "20"},
-    {"id": 24, "text": "Area of square side 10.", "answer": "100"},
-    {"id": 25, "text": "What is the constant term in x² + 5?", "answer": "5"},
-    {"id": 16, "text": "Coefficients of x² in x² − x.", "answer": "1"},
-    {"id": 9, "text": "Convert 0.2 to percentage.", "answer": "20"},
-    {"id": 21, "text": "Express 2:5 as fraction.", "answer": "2/5"},
-    {"id": 22, "text": "Convert 5/8 to decimal.", "answer": "0.625"},
-    {"id": 17, "text": "Sum of angles in triangle.", "answer": "180°"},
-    {"id": 3, "text": "Sum of angles in quadrilateral.", "answer": "360"},
-    {"id": 6, "text": "Mode of 2, 2, 3, 4, 2, 5.", "answer": "2"},
-    {"id": 5, "text": "Mean of 4, 8, 16.(2 digits after decimal)", "answer": "9.33"},
-    {"id": 13, "text": "Perimeter of rectangle 12 × 5.", "answer": "34"},
-    {"id": 14, "text": "Solve: x/5 = 4.", "answer": "20"},
-    {"id": 23, "text": "Solve: x + 3x = 12.", "answer": "3"},
-    {"id": 1, "text": "Solve: 2x − 3 = 11.", "answer": "7"},
-    {"id": 7, "text": "Solve: 3(x − 2) = 9.", "answer": "5"},
-    {"id": 10, "text": "Simplify: x² + 2x +1 when x=2.", "answer": "9"},
-    {"id": 4, "text": "Simplify: (x + 2)(x − 2).", "answer": "x² − 4"},
-    {"id": 2, "text": "Factorize: x² − 9.", "answer": "(x−3)(x+3)"},
-    {"id": 12, "text": "Divide: x² − 1 ÷ (x − 1).", "answer": "x + 1"},
-    {"id": 11, "text": "Midpoint between (1,2) and (3,4).", "answer": "2,3"},
-    {"id": 8, "text": "Area of circle radius 5 cm.", "answer": "25π"}
+    {"id": 1, "text": "What is (–13) × (–24)?", "answer": "312"},
+    {"id": 2, "text": "What is 3/4 + 1/8?(write in decimal form)", "answer": "0.875"},
+    {"id": 3, "text": "Simplify: 27 − (−15).", "answer": "42"},
+    {"id": 4, "text": "Convert 0.375 to fraction.", "answer": "3/8"},
+    {"id": 5, "text": "Solve: 5x + 2 = 17.", "answer": "3"},
+    {"id": 6, "text": "Solve: x+2/4 = 5.", "answer": "18"},
+    {"id": 7, "text": "What is 2.5 × 0.4?", "answer": "1"},
+    {"id": 8, "text": "Convert 0.08 to percentage.", "answer": "8"},
+    {"id": 9, "text": "What is 7²?", "answer": "49"},
+    {"id": 10, "text": "What is √81?", "answer": "9"},
+    {"id": 11, "text": "What is ∛27?", "answer": "3"},
+    {"id": 12, "text": "Express 27:63 as a fraction.", "answer": "3/7"},
+    {"id": 13, "text": "A quadrilateral has angles 90, 80, 100; find the fourth angle.", "answer": "90"},
+    {"id": 14, "text": "Mean of 4, 8, and 12.", "answer": "8"},
+    {"id": 15, "text": "Mode of 2, 3, 3, 4, 5.", "answer": "3"},
+    {"id": 16, "text": "Perimeter of rectangle with sides 3 and 4.", "answer": "14"},
+    {"id": 17, "text": "Solve proportion: if 4 : x = 2 : 5, find x.", "answer": "10"},
+    {"id": 18, "text": "Simplify: 4x³ + 2x² + x + 5 when x = -1.", "answer": "2"},
+    {"id": 19, "text": "Factorize by finding x if x² − 9 = 0, positive root.", "answer": "3"},
+    {"id": 20, "text": "Calculate 2³.", "answer": "8"},
+    {"id": 21, "text": "Simplify exponent law: 3² × 3³.", "answer": "243"},
+    {"id": 22, "text": "Simplify exponent law: 2⁵ ÷ 2³.", "answer": "4"},
+    {"id": 23, "text": "Playing with numbers: the sum of digits of 223 is divisible by(other than 1)", "answer": "7"},
+    {"id": 24, "text": "Exponents: express 0.001 in exponent form and what is the power of 10 (numeric exponent only).", "answer": "-3"},
+    {"id": 25, "text": "Algebraic expressions: coefficient of x in 5x − 2.", "answer": "5"}
   ],
+  
   "9": [
-    {"id": 14, "text": "What is 2³?", "answer": "8"},
-    {"id": 23, "text": "What is 10−2?", "answer": "8"},
-    {"id": 24, "text": "Add: 4.5 + 5.5.", "answer": "10.0"},
-    {"id": 17, "text": "Divide: 144 ÷ 16.", "answer": "9"},
-    {"id": 18, "text": "Express 7 as decimal.", "answer": "7.0"},
-    {"id": 19, "text": "Convert 3/4 to decimal.", "answer": "0.75"},
-    {"id": 11, "text": "Express 4/5 as a decimal", "answer": "0.8"},
-    {"id": 12, "text": "Convert 20% to fraction.", "answer": "1/5"},
-    {"id": 20, "text": "Solve: 5x = 25.", "answer": "5"},
-    {"id": 16, "text": "Simplify: 3x − x.", "answer": "2x"},
-    {"id": 7, "text": "Add: (2x +3) + (x − 1).", "answer": "3x + 2"},
-    {"id": 6, "text": "Write polynomial x² + 2x + 3.", "answer": "x² + 2x + 3"},
-    {"id": 22, "text": "Write term '2x' in polynomial.", "answer": "Term: 2x"},
-    {"id": 3, "text": "Mode of 2,3,3,5,6,3,7.", "answer": "3"},
-    {"id": 10, "text": "Find mean of 5, 10, 15, 20, 25.", "answer": "15"},
-    {"id": 21, "text": "Probability of even number on dice.", "answer": "1/2"},
-    {"id": 15, "text": "Perimeter of square side 12.", "answer": "48"},
-    {"id": 25, "text": "Area triangle base 14 height 10.", "answer": "70"},
-    {"id": 9, "text": "Area of circle diameter 10.", "answer": "25π"},
-    {"id": 8, "text": "Subtract: x² − x − (x − 1).", "answer": "x² − 2x + 1"},
-    {"id": 1, "text": "Solve x² − 1 ÷ (x − 1).", "answer": "x + 1"},
-    {"id": 13, "text": "Value of x if x² = 49.", "answer": "7 or −7"},
-    {"id": 5, "text": "Midpoint between (3,4) and (7,8).", "answer": "(5,6)"},
-    {"id": 2, "text": "Area of semicircle radius 7 cm.", "answer": "24.5π"},
-    {"id": 4, "text": "Probability of drawing ace from 52 cards.", "answer": "1/13"}
-  ],
+    {
+      "id": 1,
+      "text": "What is the sum of -15 and 28?",
+      "answer": "13"
+    },
+    {
+      "id": 2,
+      "text": "What is the product of -5 and -12?",
+      "answer": "60"
+    },
+    {
+      "id": 3,
+      "text": "If a shirt costs Rs. 450 and is on a 20% discount, what is the discount amount in Rupees?",
+      "answer": "90"
+    },
+    {
+      "id": 4,
+      "text": "What is the value of 5.75 + 3.25?(write the answer in decimal/two values after decimal)",
+      "answer": "9.00"
+    },
+    {
+      "id": 5,
+      "text": "What is 0.8 \u00d7 0.5?",
+      "answer": "0.4"
+    },
+    {
+      "id": 6,
+      "text": "Convert the fraction 3/5 to a decimal.",
+      "answer": "0.6"
+    },
+    {
+      "id": 7,
+      "text": "Simplify the expression 3x + 7 - x + 2.(don't use spaces)",
+      "answer": "2x+9"
+    },
+    {
+      "id": 8,
+      "text": "If x = 3, what is the value of 2x + 5?",
+      "answer": "11"
+    },
+    {
+      "id": 9,
+      "text": "What is the degree of the polynomial 5x\u00b3 + 2x\u00b2 - 7x + 1?",
+      "answer": "3"
+    },
+    {
+      "id": 10,
+      "text": "If x + y = 10 and x - y = 2, what is the value of x?",
+      "answer": "6"
+    },
+    {
+      "id": 11,
+      "text": "If two lines intersect, and one angle formed is 40\u00b0, what is the measure of its vertically opposite angle in degrees?",
+      "answer": "40"
+    },
+    {
+      "id": 12,
+      "text": "The sum of angles in a triangle is always how many degrees?",
+      "answer": "180"
+    },
+    {
+      "id": 13,
+      "text": "A quadrilateral has angles 70\u00b0, 80\u00b0, and 110\u00b0. What is the measure of the fourth angle in degrees?",
+      "answer": "100"
+    },
+    {
+      "id": 14,
+      "text": "What is the area of a triangle with a base of 10 cm and a height of 8 cm?",
+      "answer": "40"
+    },
+    {
+      "id": 15,
+      "text": "A circle has a radius of 7 cm. What is its circumference? (Use \u03c0 \u2248 22/7)",
+      "answer": "44"
+    },
+    {
+      "id": 16,
+      "text": "What is the area of a square with side length 9 cm?",
+      "answer": "81"
+    },
+    {
+      "id": 17,
+      "text": "A triangle has sides of length 3 cm, 4 cm, and 5 cm. What is its perimeter in cm?",
+      "answer": "12"
+    },
+    {
+      "id": 18,
+      "text": "Using Heron's formula, if a triangle has sides a=5, b=12, c=13, what is its semi-perimeter s?",
+      "answer": "15"
+    },
+    {
+      "id": 19,
+      "text": "What is the surface area of a cube with side length 4 cm?",
+      "answer": "96"
+    },
+    {
+      "id": 20,
+      "text": "A cuboid has length 5 cm, width 3 cm, and height 2 cm. What is its volume in cm\u00b3?",
+      "answer": "30"
+    },
+    {
+      "id": 21,
+      "text": "What is the mean of the numbers 2, 4, 6, 8, 10?",
+      "answer": "6"
+    },
+    {
+      "id": 22,
+      "text": "In a data set: 3, 5, 2, 5, 8, 5. What is the mode?",
+      "answer": "5"
+    },
+    {
+      "id": 23,
+      "text": "A bag contains 3 red balls and 7 blue balls. What is the probability of drawing a red ball?(write it in p/q form)",
+      "answer": "3/10"
+    },
+    {
+      "id": 24,
+      "text": "Simplify (2x + 3y) + 2(x - y)? (type it without spaces)",
+      "answer": "4x+y"
+    },
+    {
+      "id": 25,
+      "text": "Solve for x: 2x - 5 = 15.",
+      "answer": "10"
+    }
+  ]
+,
   "10": [
-    {"id": 22, "text": "Probability of head toss.", "answer": "1/2"},
-    {"id": 25, "text": "Ratio 50:20 simplified.", "answer": "5:2"},
-    {"id": 13, "text": "Express 45% as fraction.", "answer": "9/20"},
-    {"id": 15, "text": "Convert 0.125 to fraction.", "answer": "1/8"},
-    {"id": 16, "text": "Find mode of 2,3,4,4,5.", "answer": "4"},
-    {"id": 21, "text": "Find range of 2,5,8,12,15.", "answer": "13"},
-    {"id": 18, "text": "Add: 12.75 + 7.25.", "answer": "20.0"},
-    {"id": 19, "text": "Subtract: 15.5 − 8.2.", "answer": "7.3"},
-    {"id": 10, "text": "Solve: 2x + 3 = 11.", "answer": "4"},
-    {"id": 23, "text": "Solve: x/4=5.", "answer": "20"},
-    {"id": 17, "text": "Solve x²=81.", "answer": "9 or −9"},
-    {"id": 20, "text": "Simplify: 3(x+2)−x.", "answer": "2x + 6"},
-    {"id": 11, "text": "Find x intercept of y=2x+4.", "answer": "−2"},
-    {"id": 12, "text": "Sum of first 5 natural numbers.", "answer": "15"},
-    {"id": 4, "text": "Mean of 10,20,30,40,50.", "answer": "30"},
-    {"id": 9, "text": "Arithmetic mean of 8,12,16,20,24.", "answer": "16"},
-    {"id": 7, "text": "Value of ∑ AP first 3 terms of 3,6,9.", "answer": "18"},
-    {"id": 2, "text": "5th term AP, a=2, d=3.", "answer": "14"},
-    {"id": 24, "text": "Area of square side 15.", "answer": "225"},
-    {"id": 14, "text": "Perimeter of circle r=7.", "answer": "14π"},
-    {"id": 8, "text": "Area of circle radius 7.", "answer": "49π"},
-    {"id": 6, "text": "Factorize x² − 4x + 4.", "answer": "(x−2)²"},
-    {"id": 1, "text": "Solve x² − 5x + 6 = 0.", "answer": "2, 3"},
-    {"id": 5, "text": "Odds in favour if P=0.2.", "answer": "1:4"},
-    {"id": 3, "text": "Equation circle centre (0,0) r=5.", "answer": "x² + y² = 25"}
+    {"id":1,"text":"Solve the quadratic equation: x^2 - 5x + 6 = 0 (give the smaller root)","answer":"2"},
+  {"id":2,"text":"Find the positive value of x if x^2 = 49","answer":"7"},
+  {"id":3,"text":"Factorize: x^2 − 4x + 4 (use ^ for powers), example : if you get answer as (x+6)² write it down as (x+6)^2","answer":"(x−2)^2"},
+  {"id":4,"text":"Angle between hour hand and minute hand, when the time is 4:20 (just write the number) ","answer":"10"},
+  {"id":5,"text":"Simplify: (x + 2)(x − 2) (use ^ for powers), example if you get answer as x²+1 write it down as x^2+1","answer":"x^2−4"},
+  {"id":6,"text":"Solve: 2x − 3 = 11","answer":"7"},
+  {"id":7,"text":"Midpoint between 3,4 and 7,8 (DO NOT WRITE BRACKETS)","answer":"5,6"},
+  {"id":8,"text":"Area of semicircle radius 7 cm (use π ≈ 22/7)","answer":"77"},
+  {"id":9,"text":"Probability of drawing an ace from a pack of 52 cards (decimal form,upto 4 decimal places)","answer":"0.0769"},
+  {"id":10,"text":"Sum of first 3 terms of AP: 3, 6, 9","answer":"18"},
+  {"id":11,"text":"5th term of an AP if a = 2, d = 3","answer":"14"},
+  {"id":12,"text":"Area of square side 15 cm","answer":"225"},
+  {"id":13,"text":"Perimeter of a circle with radius 7 cm (use π ≈ 22/7)","answer":"44"},
+  {"id":14,"text":"Area of circle radius 7 cm (use π ≈ 22/7)","answer":"154"},
+  {"id":15,"text":"Find the positive value of x if x^2 = 81","answer":"9"},
+  {"id":16,"text":"Mean of 10, 20, 30, 40, 50","answer":"30"},
+  {"id":17,"text":"Probability of even number on a dice (decimal form)","answer":"0.5"},
+  {"id":18,"text":"Solve: x^2 - 16 = 0 (give the positive root)","answer":"4"},
+  {"id":19,"text":"Find the greater root of 3x^2 - 12x = 0","answer":"4"},
+  {"id":20,"text":"Find 10th term of AP if a = 5 and d = 7","answer":"68"},
+  {"id":21,"text":"Find the sum of first 20 natural numbers","answer":"210"},
+  {"id":22,"text":"Find the distance between -2, 3 and 4, 6 (2 decimal places)","answer":"6.71"},
+  {"id":23,"text":"Find the probability of getting a number greater than 4 on a dice (decimal form)","answer":"0.33"},
+  {"id":24,"text":"Find the mode of 7, 8, 8, 5, 6, 8, 9","answer":"8"},
+  {"id":25,"text":"Surface area of a cube of side 7 cm (in cm²) ","answer":"294"}
   ]
 }
